@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  plex:
+    image: linuxserver/plex:latest
+    container_name: plex
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - PUID=1000  # ID użytkownika
+      - PGID=1000  # ID grupy
+      - TZ=Europe/Warsaw  # Strefa czasowa
+      - VERSION=latest  # Można ustawić 'public' dla stabilnej wersji
+    volumes:
+      - /ścieżka/do/config:/config  # Folder konfiguracyjny Plex
+      - /ścieżka/do/mediów:/media  # Folder z multimediami
+      - /ścieżka/do/transkodowania:/transcode  # Folder do transkodowania
